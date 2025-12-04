@@ -1,0 +1,29 @@
+"use server";
+
+import AnimeCard, { AnimeProp } from "@/components/AnimeCard";
+import { q } from "framer-motion/client";
+
+export const fetchAnime = async (page: number) => {
+  const res = await fetch(
+    `https://shikimori.one/api/animes?page=${page}&limit=10&order=popularity`
+  );
+  const data = await res.json();
+
+  return data.map((item: AnimeProp, index: number) => (
+    <AnimeCard key={item.id} anime={item} index={index} />
+  ));
+};
+
+export const fetchSearch = async (query: string, page: number) => {
+  console.log(query)
+  const res = await fetch(
+    `https://shikimori.one/api/animes?page=${page}&search=${query}&limit=10&order=popularity`
+  );
+  const data = await res.json();
+
+  console.log(data, "search data");
+
+  return data.map((item: AnimeProp, index: number) => (
+    <AnimeCard key={item.id} anime={item} index={index} />
+  ));
+};
