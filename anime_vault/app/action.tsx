@@ -1,11 +1,19 @@
 "use server";
 
-import AnimeCard, { AnimeProp } from "@/components/AnimeCard";
-import { q } from "framer-motion/client";
+import AnimeCard from "@/components/AnimeCard";
+import { AnimeProp } from "./types";
 
-export const fetchAnime = async (page: number) => {
+export const fetchPosts = async (page: number, limit?: number) => {
   const res = await fetch(
-    `https://shikimori.one/api/animes?page=${page}&limit=10&order=popularity`
+    `https://shikimori.one/api/animes?page=${page}&limit=${limit}&order=popularity`
+  );
+  const data = await res.json();
+  return data;
+};
+
+export const fetchAnime = async (page: number, limit?: number) => {
+  const res = await fetch(
+    `https://shikimori.one/api/animes?page=${page}&limit=${limit}&order=popularity`
   );
   const data = await res.json();
 
@@ -14,16 +22,30 @@ export const fetchAnime = async (page: number) => {
   ));
 };
 
-export const fetchSearch = async (query: string, page: number) => {
-  console.log(query)
+export const allAnimeFetch = async () => {
   const res = await fetch(
-    `https://shikimori.one/api/animes?page=${page}&search=${query}&limit=10&order=popularity`
+    `https://shikimori.one/api/animes?limit=100&order=popularity`
   );
   const data = await res.json();
+  return data.length;
+};
 
-  console.log(data, "search data");
+export const fetchSearch = async (
+  query: string,
+  page: number,
+  limit?: number
+) => {
+  const res = await fetch(
+    `https://shikimori.one/api/animes?page=${page}&search=${query}&limit=${limit}&order=popularity`
+  );
+  const data = await res.json();
+  return data;
+};
 
-  return data.map((item: AnimeProp, index: number) => (
-    <AnimeCard key={item.id} anime={item} index={index} />
-  ));
+export const allfetchSearch = async (query: string) => {
+  const res = await fetch(
+    `https://shikimori.one/api/animes?&search=${query}&limit=100&order=popularity`
+  );
+  const data = await res.json();
+  return data.length;
 };

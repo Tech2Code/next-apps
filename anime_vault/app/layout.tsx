@@ -22,7 +22,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={dmSans.className}>
-        <main className="min-h-screen w-full bg-[#0F1117]">
+        <main className="flex flex-1 flex-col min-h-screen w-full bg-[#0F1117]">
           <Hero />
           <Search />
           {children}

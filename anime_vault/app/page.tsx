@@ -1,17 +1,13 @@
+import AnimePosts from "@/components/AnimePosts";
+import Loader from "@/components/Loader";
+import { Suspense } from "react";
 
-import LoadMore from "../components/LoadMore";
-import { fetchAnime } from "./action";
-
-async function Home() {
-  const data = await fetchAnime(1);
+export default function Home() {
   return (
-    <main className="sm:p-16 py-16 px-8 flex flex-col gap-10">
-      {/* <section className="grid lg:grid-cols-5 md:grid-cols-4 sm:grid-cols-3 grid-cols-1 place-items-center gap-10">
-        {data}
-      </section> */}
-      <LoadMore />
-    </main>
+    <div className="sm:px-16 py-8 px-4 flex flex-col gap-5 flex-1 min-h-[35vh]">
+      <Suspense fallback={<Loader />}>
+        <AnimePosts pageNo={1} />
+      </Suspense>
+    </div>
   );
 }
-
-export default Home;

@@ -3,25 +3,23 @@ import Link from "next/link";
 
 function Hero() {
   return (
-    <header className="bg-hero bg-center bg-cover bg-no-repeat sm:p-16 py-16 px-8 flex justify-center lg:items-center max-lg:flex-col w-full sm:gap-16 gap-0">
-      <div className="flex-1 flex flex-col gap-10">
+    <header className="bg-hero bg-center bg-cover bg-no-repeat md:px-16  p-4 flex justify-between lg:items-center max-lg:flex-col w-full sm:gap-16 gap-0">
+      <div className="flex-1 flex flex-col gap-3 md:gap-7 md:items-start items-center">
         <Link href="/" className="relative w-[101px] h-[96px]">
           <Image
-            src="./logo.svg"
+            src="/logo.svg"
             alt="logo"
-            width={101}
-            height={96}
             priority
             sizes="100%"
-            className="object-contain"
+            fill
           />
         </Link>
-        <h1 className="sm:text-6xl text-5xl text-white lg:max-w-lg font-bold leading-[120%]">
-          Explore The <span className="red-gradient">Diverse Realms</span> of
+        <h1 className="sm:text-6xl text-3xl text-white lg:max-w-lg font-bold md:leading-[120%] leading-[100%] md:text-left text-center">
+          Explore The <span className="red-gradient block md:inline">Diverse Realms</span> of
           Anime Magic
         </h1>
       </div>
-      <div className="lg:flex-1 relative w-full h-[50vh] justify-center">
+      <div className="md:flex  hidden relative max-w-[350px] w-full h-[50vh] justify-end">
         <Image
           src="/anime.png"
           alt="anime"

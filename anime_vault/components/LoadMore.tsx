@@ -11,13 +11,12 @@ type LoadMoreProps = {
   query?: string;
 };
 
-let page = 1;
-
 function LoadMore({ query }: LoadMoreProps) {
   const { ref, inView } = useInView();
 
   const [data, setData] = useState<AnimeCard[]>([]);
   const [hasMore, setHasMore] = useState(true);
+  const [page , setPage] = useState(1);
 
   useEffect(() => {
     if (inView && hasMore) {
@@ -32,12 +31,12 @@ function LoadMore({ query }: LoadMoreProps) {
         }
 
         setData((prev) => [...prev, ...res]);
-        page++;
+        setPage((prev) => prev + 1);
       };
 
       fetchMore();
     }
-  }, [inView, query, hasMore]);
+  }, [inView, query, hasMore, page]);
 
   return (
     <>
