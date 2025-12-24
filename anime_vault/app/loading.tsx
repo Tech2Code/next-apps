@@ -1,9 +1,8 @@
 import Image from "next/image";
-
-export default function loading() {
+export default function Loading() {
   return (
-    <section className="flex justify-center items-center w-full h-[20vh]">
-      <div>
+    <div className="fixed inset-0 z-50 bg-black/50 flex items-center justify-center">
+      <div className="text-white text-xl animate-pulse">
         <Image
           src="/spinner.svg"
           alt="spinner"
@@ -12,6 +11,6 @@ export default function loading() {
           className="object-contain"
         />
       </div>
-    </section>
+    </div>
   );
 }

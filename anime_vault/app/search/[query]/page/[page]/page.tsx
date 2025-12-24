@@ -7,6 +7,15 @@ interface PageProps {
   // searchParams: { [key: string]: string | undefined };
 }
 
+export async function generateMetadata({ params }: PageProps) {
+  const pageNo = Number(params.page || 1);
+  const query = decodeURIComponent(params.query).replace(/-/g, " ");
+  return {
+    title: `Page ${pageNo} of ${query} - Search Results`,
+    description: `Search results for ${query}`,
+  };
+}
+
 export default function Page({ params }: PageProps) {
   const query = decodeURIComponent(params.query).replace(/-/g, " ");
   const pageNo = Number(params.page || 1);
@@ -19,7 +28,7 @@ export default function Page({ params }: PageProps) {
   }
 
   return (
-    <div className="sm:px-16 py-8 px-4 flex flex-col gap-10 flex-1 min-h-[35vh]">
+    <div className="sm:px-16 py-8 px-4 flex flex-col gap-5">
       <h2 className="text-2xl text-white">
         Search results for:{" "}
         <span className="red-gradient font-bold">{query}</span>

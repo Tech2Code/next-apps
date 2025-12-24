@@ -3,7 +3,6 @@ import AnimeCard from "./AnimeCard";
 import NewPagination from "./NewPagination";
 import { allfetchSearch, fetchSearch } from "@/app/action";
 import { slugify } from "@/app/lib/fun";
-import { notFound } from "next/navigation";
 
 const postPerPage = 20;
 

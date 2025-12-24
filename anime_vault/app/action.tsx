@@ -49,3 +49,12 @@ export const allfetchSearch = async (query: string) => {
   const data = await res.json();
   return data.length;
 };
+
+export async function getAnime(id: string) {
+  const res = await fetch(`https://shikimori.one/api/animes/${id}`, {
+    cache: "no-store",
+  });
+
+  if (!res.ok) throw new Error("Failed to fetch anime");
+  return res.json();
+}

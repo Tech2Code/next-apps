@@ -1,10 +1,17 @@
-import { slugify } from "@/app/lib/fun";
 import SearchPosts from "@/components/SearchPosts";
-import { redirect } from "next/navigation";
 
 interface PageProps {
   params: { query: string; page: string };
   // searchParams: { [key: string]: string | undefined };
+}
+
+export async function generateMetadata({ params }: PageProps) {
+  const query = params.query || "Search";
+
+  return {
+    title: `${query} - Search Results`,
+    description: `Search results for ${query}`,
+  };
 }
 
 export default function SearchPage({ params }: PageProps) {
@@ -20,7 +27,7 @@ export default function SearchPage({ params }: PageProps) {
   }
 
   return (
-    <div className="sm:px-16 py-8 px-4 flex flex-col gap-5 flex-1 min-h-[35vh]">
+    <div className="sm:px-16 py-8 px-4 flex flex-col gap-5">
       <h2 className="text-2xl text-white">
         Search results for:{" "}
         <span className="red-gradient font-bold">{query}</span>
